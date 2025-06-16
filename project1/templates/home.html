@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELEGANCE | Premium Clothing</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    body {
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* Header */
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #000;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+    }
+    
+    .nav-links a {
+      color: #555;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: #000;
+    }
+    
+    .cart-icon {
+      font-size: 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background-color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      width: 50%;
+      padding-left: 5%;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      max-width: 500px;
+      color: #555;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: #000;
+      color: #fff;
+      padding: 12px 30px;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #333;
+      transform: translateY(-3px);
+    }
+    
+    .hero-image {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Categories Section */
+    .categories {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 32px;
+      font-weight: 700;
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    
+    .category-card {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .category-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .category-name {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    /* Featured Products */
+    .featured-products {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    
+    .product-card {
+      background-color: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .product-image {
+      height: 250px;
+      width: 100%;
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .product-info {
+      padding: 20px;
+    }
+    
+    .product-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .product-price {
+      color: #000;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    
+    .add-to-cart {
+      width: 100%;
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #000;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .add-to-cart:hover {
+      background-color: #000;
+      color: #fff;
+    }
+    
+    /* Newsletter */
+    .newsletter {
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .newsletter p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: #555;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .newsletter-input {
+      flex: 1;
+      padding: 15px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+    
+    .newsletter-btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 0 30px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #111;
+      color: #fff;
+      padding: 60px 0 30px;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    
+    .footer-col h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: #aaa;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: #fff;
+    }
+    
+    .social-links {
+      display: flex;
+      margin-top: 20px;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background-color: #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      transition: background-color 0.3s;
+    }
+    
+    .social-link:hover {
+      background-color: #555;
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      color: #aaa;
+      font-size: 14px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-content {
+        width: 100%;
+        padding: 0 5%;
+        text-align: center;
+      }
+      
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .hero-image {
+        display: none;
+      }
+      
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="nav-container">
+        <a href="#" class="logo">ELEGANCE</a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav-links">
+          <li> <a href="#" class="cart-icon">🛒</a><li>
+          {%if user.is_authenticated%}
+          <li><a>hello {{user.username}}</a><li>
+          <li><a href="{% url 'logout' %}">Logout</a><li>
+          {%else%}
+          <li><a href="{% url 'login' %}">login</a><li>
+          {% endif%}
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Elevate Your Style This Season</h1>
+      <p>Discover our premium collection of sustainable and ethically made clothing designed for modern living.</p>
+      <a href="#" class="btn">Shop Now</a>
+    </div>
+    <div class="hero-image">
+      <img src="/api/placeholder/600/800" alt="Hero fashion image">
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <div class="container">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="category-grid">
+        <div class="category-card">
+          <img src="{{womens_items.0.image.url}}" alt="Women's Collection">
+          <div class="category-name">Women</div>
+        </div>
+        <div class="category-card">
+          <img src="{{ mens_items.3.image.url }}" alt="Men's Collection">
+          <div class="category-name">Men</div>
+        </div>
+        <div class="category-card">
+          <img src="{{accessoriess_items.0.image.url}}" alt="Accessories">
+          <div class="category-name">Accessories</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-products">
+    <div class="container">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="product-grid">
+        {% for mens_items in mens_items%}
+        {% if forloop.counter <= 3 %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{mens_items.image.url}}" alt="Product 1">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title"> {{mens_items.name}}</h3>
+            <div class="product-price">{{mens_items.price}}</div>
+            <p class="product-description">{{mens_items.description}}</p>
+
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        
+      
+       
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <h2 class="section-title">Stay Updated</h2>
+      <p>Subscribe to our newsletter and be the first to know about new collections, exclusive offers, and styling tips.</p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Your email address">
+        <button type="submit" class="newsletter-btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>ELEGANCE</h3>
+          <p>Premium clothing brand focused on sustainability and timeless style.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">FB</a>
+            <a href="#" class="social-link">IG</a>
+            <a href="#" class="social-link">TW</a>
+            <a href="#" class="social-link">PT</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <ul class="footer-links">
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Help</h3>
+          <ul class="footer-links">
+            <li><a href="#">Customer Service</a></li>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>About</h3>
+          <ul class="footer-links">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2025 ELEGANCE. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
