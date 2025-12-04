@@ -419,13 +419,13 @@
           <li><a href="#">Contact</a></li>
         </ul>
         <ul class="nav-links">
-          <li><a href="{% url 'cart' %}" class="cart-icon">🛒</a></li>
-          {% if user.is_authenticated %}
-          <li><a>Hello {{user.username}}</a></li>
-          <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-          <li><a href="{% url 'login' %}">Login</a></li>
-          {% endif %}
+          <li> <a href="#" class="cart-icon">🛒</a><li>
+          {%if user.is_authenticated%}
+          <li><a>hello {{user.username}}</a><li>
+          <li><a href="{% url 'logout' %}">Logout</a><li>
+          {%else%}
+          <li><a href="{% url 'login' %}">login</a><li>
+          {% endif%}
         </ul>
       </div>
     </div>
@@ -469,56 +469,25 @@
     <div class="container">
       <h2 class="section-title">Featured Products</h2>
       <div class="product-grid">
-        {% for item in mens_items %}
-        {% if forloop.counter <= 4 %}
+        {% for mens_items in mens_items%}
+        {% if forloop.counter <= 3 %}
         <div class="product-card">
           <div class="product-image">
-            <img src="{{item.image.url}}" alt="{{item.name}}" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="{{mens_items.image.url}}" alt="Product 1">
           </div>
           <div class="product-info">
-            <h3 class="product-title">{{item.name}}</h3>
-            <div class="product-price">${{item.price}}</div>
-            <a href="{% url 'add_to_cart' item.id 'mens' %}">
-              <button class="add-to-cart">Add to Cart</button>
-            </a>
+            <h3 class="product-title"> {{mens_items.name}}</h3>
+            <div class="product-price">{{mens_items.price}}</div>
+            <p class="product-description">{{mens_items.description}}</p>
+
+            <button class="add-to-cart">Add to Cart</button>
           </div>
         </div>
         {% endif %}
         {% endfor %}
         
-        {% for item in womens_items %}
-        {% if forloop.counter <= 4 %}
-        <div class="product-card">
-          <div class="product-image">
-            <img src="{{item.image.url}}" alt="{{item.name}}" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">{{item.name}}</h3>
-            <div class="product-price">${{item.price}}</div>
-            <a href="{% url 'add_to_cart' item.id 'womens' %}">
-              <button class="add-to-cart">Add to Cart</button>
-            </a>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-        
-        {% for item in accessoriess_items %}
-        {% if forloop.counter <= 4 %}
-        <div class="product-card">
-          <div class="product-image">
-            <img src="{{item.image.url}}" alt="{{item.name}}" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">{{item.name}}</h3>
-            <div class="product-price">${{item.price}}</div>
-            <a href="{% url 'add_to_cart' item.id 'accessories' %}">
-              <button class="add-to-cart">Add to Cart</button>
-            </a>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
+      
+       
       </div>
     </div>
   </section>
